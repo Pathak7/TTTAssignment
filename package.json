@@ -1,0 +1,21 @@
+{
+  "name": "assignment",
+  "version": "1.0.0",
+  "description": "to fetch most frequent n words in a file hosted somewhere",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "Ayush Pathak",
+  "license": "ISC",
+  "dependencies": {
+    "Set": "^0.4.1",
+    "angular": "^1.6.10",
+    "body-parser": "^1.18.2",
+    "ejs": "^2.6.1",
+    "express": "^4.16.3",
+    "priorityqueuejs": "^1.0.0",
+    "request": "^2.85.0"
+  }
+}

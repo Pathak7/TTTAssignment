@@ -1,0 +1,48 @@
+<!DOCTYPE html >
+<html lang="en" ng-app="myApp">
+<head>
+    
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <script src="scripts/angularApp.js"></script>
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+<body >    
+
+<div class="jumbotron text-center">
+            <h1>Get N most frequent words</h1>
+        </div>
+  <div ng-controller="myCtrl">
+   
+    <form>
+       <div class="form-group">
+      <input type="text"class="form-control  text-center" ng-model="formdata.num" placeholder="Enter number n">
+      </div>
+       <div  class="col-md-12 text-center">
+      <input type="submit" class="btn btn-primary btn-lg " value="Find" ng-click="submit()">
+      </div>
+    </form>
+   
+  
+  <div class="container">
+  <table class="table" style="border-radius: 5px;
+    width: 50%;
+    margin: 0px auto;
+    float: none;">
+    <tbody>
+        
+      <tr ng-repeat="word in words ">
+          
+        <td>{{word.word}}</td>
+        <td>{{word.count}}</td>
+        
+        
+      </tr>
+      
+    </tbody>
+  </table>
+</div>
+  
+  
+  </div>
+  
+</body>
