@@ -7,6 +7,7 @@ var text="Something words ";
 const request = require('request');
 var Set = require("Set");
 var PriorityQueue = require('priorityqueuejs');
+var PriorityQueuee=require("js-priority-queue");
 
 
 var pq=new PriorityQueue(function(a, b) {
@@ -24,15 +25,22 @@ function tokenise()
     text=text+" ";
     var word="";
     var arr=[];
+    var charOccured=0;
     for(var i=0;i<text.length;i++)
     {
         if(text[i]==' ')
         {
+            
+            word=word.toLowerCase();
+            if(charOccured)
             arr.push(word);
             word="";
+            charOccured=0;
         }
         else
         {
+            if((text[i]>='A' && text[i]<='Z') || (text[i]>='a' && text[i]<='z'))
+            charOccured=1;
             word=word+text[i];
         }
     }
@@ -60,20 +68,37 @@ function getans(n)
         
     }
     
+   // console.log(mp["can"]);
     var arr = ss.toArray();
 //console.log(arr);
 var pq=new PriorityQueue(function(a, b) {
-  return a.count - b.count;
+  return parseInt(a.count) - parseInt(b.count);
 });
+var pqq = new PriorityQueuee({ comparator: function(a, b) { return a.count - b.count; }});
+
+
+var cc=0;
+var ns=new Set();
+//console.log(arr.length);
+if(arr.length<n)
+n=arr.length;
 for (var i=0;i<arr.length;i++) {
-    pq.enq({count:mp[arr[i]],word:arr[i]});
+    
+    //ns.add([-parseInt(mp[arr[i]]),arr[i]]);
+   
+    pq.enq({count:parseInt(mp[arr[i]]),word:arr[i]});
+      pqq.queue({count:-parseInt(mp[arr[i]]),word:arr[i]});
+    
 }
+var tt=0;
+
+
 var anslist=[];
 var c=0;
 while(c<n)
 {
-    var xx=pq.deq();
-    anslist.push(xx);
+    var xx=pqq.dequeue();
+    anslist.push({count:-xx.count,word:xx.word});
     c++; 
 }
 //console.log(mp["tales"]);
@@ -106,6 +131,7 @@ app.post("/",function(req,ress)
     //console.log(req);
      x=getans(tt);
     //console.log(x);
+    
     ress.send(x);
    // ress.render("words.ejs",{words:x});
     
